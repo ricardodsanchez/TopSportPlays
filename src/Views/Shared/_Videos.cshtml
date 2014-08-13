@@ -1,0 +1,26 @@
+﻿@model List<TheTopPlays.Models.Video>
+
+@if (Model != null && Model.Any())
+{   
+    <div class="row">
+        <p>Look at these videos, enter your comments and email to a friend.</p>
+
+        @foreach (var item in Model)
+        {
+            using (Html.BeginForm("EmailMessage", "Home", FormMethod.Post))
+            {
+                <input type="hidden" name="videoid" value="@item.Id" />
+                <input type="hidden" name="search" value="@item.Search" />
+                <div class="col-md-6">
+                    <h4>@item.Title</h4>
+                    <iframe width="510" height="345" src="@item.Url"></iframe>
+                    <textarea name="message" rows="2" cols="90" style="max-width:520px" maxlength="100"></textarea>
+                    <input type="text" name="from" placeholder="Your email"/>
+                    <input type="text" name="to" placeholder="Friend's email" />
+                    <input class="btn btn-sm btn-success" value="Send" type="submit" />
+                </div>
+            }
+
+        }
+    </div>
+}

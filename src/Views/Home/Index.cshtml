@@ -1,0 +1,25 @@
+﻿@model List<TheTopPlays.Models.Video>
+
+@{
+    ViewBag.Title = "The Top Sport Plays";
+}
+
+<div class="well-lg">
+    @using (Html.BeginForm("GetVideos", "Home", FormMethod.Post))
+    {
+        <input class="input-lg" name="search" type="text" placeholder="i.e. soccer, football" />
+        <input class="btn btn-group-lg btn-primary" type="submit" value="Search" />
+    }
+</div>
+
+@if (Model != null && Model.Any())
+{
+    @Html.Partial("_Videos")
+}
+else
+{
+    <p>Enter your favorite sport in the search box above to get the videos of the top plays for that sport!</p>
+}
+<!-- We could use ajax to post the form instead.. 
+    <script src="~/Scripts/index.js"></script>
+    --> 
